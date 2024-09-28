@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpd6s8seysh5d"]
+[gd_scene load_steps=5 format=3 uid="uid://dpd6s8seysh5d"]
 
+[ext_resource type="PackedScene" uid="uid://c8xwumx186b27" path="res://Assets/Hand_Left.scn" id="1_0ikst"]
 [ext_resource type="Texture2D" uid="uid://kqcfdo8ew23a" path="res://icon.svg" id="1_eu7mx"]
+[ext_resource type="Script" path="res://root.gd" id="1_vqcta"]
+[ext_resource type="PackedScene" uid="uid://1lq3jdmeyvgb" path="res://Assets/Hand_Right.scn" id="2_0jefg"]
 
 [node name="root" type="Node3D"]
+script = ExtResource("1_vqcta")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 
@@ -11,8 +15,14 @@
 [node name="left_hand" type="XRController3D" parent="XROrigin3D"]
 tracker = &"left_hand"
 
+[node name="Hand_Left" parent="XROrigin3D/left_hand" instance=ExtResource("1_0ikst")]
+transform = Transform3D(-5.19923e-08, 1.18945, 5.19923e-08, -4.54531e-15, 5.19923e-08, -1.18945, -1.18945, -5.19923e-08, 2.27266e-15, -0.5, 0, -0.5)
+
 [node name="right_hand" type="XRController3D" parent="XROrigin3D"]
 tracker = &"right_hand"
+
+[node name="Hand_Right" parent="XROrigin3D/right_hand" instance=ExtResource("2_0jefg")]
+transform = Transform3D(-5.19923e-08, -1.18945, 0, -5.19923e-08, 2.27266e-15, -1.18945, 1.18945, -5.19923e-08, -5.19923e-08, 0.5, 0, -0.5)
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.07766)
