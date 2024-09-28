@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpd6s8seysh5d"]
+
+[ext_resource type="Texture2D" uid="uid://kqcfdo8ew23a" path="res://icon.svg" id="1_eu7mx"]
+
+[node name="root" type="Node3D"]
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+
+[node name="left_hand" type="XRController3D" parent="XROrigin3D"]
+tracker = &"left_hand"
+
+[node name="right_hand" type="XRController3D" parent="XROrigin3D"]
+tracker = &"right_hand"
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.07766)
+texture = ExtResource("1_eu7mx")
