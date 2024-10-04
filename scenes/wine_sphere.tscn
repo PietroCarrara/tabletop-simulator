@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgepcrtjn5glc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xv5sy"]
+albedo_color = Color(0.883414, 0.0581962, 0.305762, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_c6n1w"]
+material = SubResource("StandardMaterial3D_xv5sy")
+
+[sub_resource type="MultiMesh" id="MultiMesh_e0m3x"]
+transform_format = 1
+mesh = SubResource("SphereMesh_c6n1w")
+
+[node name="WineSphere" type="Node3D"]
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
+multimesh = SubResource("MultiMesh_e0m3x")
