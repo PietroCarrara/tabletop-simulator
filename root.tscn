@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dpd6s8seysh5d"]
+[gd_scene load_steps=10 format=3 uid="uid://dpd6s8seysh5d"]
 
 [ext_resource type="PackedScene" uid="uid://c8xwumx186b27" path="res://Assets/Hand_Left.scn" id="1_0ikst"]
 [ext_resource type="Script" path="res://root.gd" id="1_vqcta"]
 [ext_resource type="PackedScene" uid="uid://1lq3jdmeyvgb" path="res://Assets/Hand_Right.scn" id="2_0jefg"]
 [ext_resource type="Script" path="res://scripts/debug_move_player.gd" id="2_xvtds"]
 [ext_resource type="Script" path="res://scripts/dataset_loader.gd" id="6_b2v35"]
+[ext_resource type="PackedScene" uid="uid://begbj5bulfgp7" path="res://axis_indicator.tscn" id="6_pp2ab"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rw2ju"]
 albedo_color = Color(0.883414, 0.0581962, 0.305762, 1)
@@ -23,10 +24,11 @@ script = ExtResource("1_vqcta")
 transform = Transform3D(1, 0, 0, 0, 0.720527, 0.693427, 0, -0.693427, 0.720527, 0, 4.72477, 2.60841)
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.293149, 1.23607)
 script = ExtResource("2_xvtds")
 enabled = true
-speed = 14.0
-camera_sensibility = 0.00872665
+speed = 2.0
+camera_sensibility = 0.00523599
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 
@@ -47,8 +49,11 @@ script = ExtResource("6_b2v35")
 axis1 = 1
 axis2 = 5
 axis3 = 10
-axes_length = 20.0
-sphere_scale = 0.3
+axes_length = 10.0
+label_offset = 0.1
+sphere_scale = 0.1
 
 [node name="wine_spheres" type="MultiMeshInstance3D" parent="dataset_loader"]
 multimesh = SubResource("MultiMesh_7hvi0")
+
+[node name="axis_indicator" parent="dataset_loader" instance=ExtResource("6_pp2ab")]

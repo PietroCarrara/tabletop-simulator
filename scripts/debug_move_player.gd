@@ -28,6 +28,10 @@ func _process(delta: float) -> void:
         movement.x = -1
     if Input.is_key_pressed(KEY_D):
         movement.x = 1
+    if Input.is_key_pressed(KEY_SPACE):
+        movement.y = 1
+    if Input.is_key_pressed(KEY_SHIFT):
+        movement.y = -1
 
     if movement != Vector3.ZERO:
         movement = movement.normalized().rotated(Vector3.UP, self.rotation.y)

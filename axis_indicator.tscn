@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://begbj5bulfgp7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_c2l0c"]
+size = Vector3(0.1, 0.5, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_35hxj"]
+size = Vector3(0.5, 0.1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ccyay"]
+size = Vector3(0.1, 0.1, 0.5)
+
+[node name="axis_indicator" type="Node3D"]
+
+[node name="x_label" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.194316, 0.0718163, 0)
+text = "X Axis"
+font_size = 16
+outline_size = 6
+horizontal_alignment = 0
+vertical_alignment = 2
+
+[node name="x_axis" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("BoxMesh_c2l0c")
+skeleton = NodePath("../..")
+
+[node name="y_label" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.0895188, 0.107715, 0)
+text = "Y Axis"
+font_size = 16
+outline_size = 6
+horizontal_alignment = 0
+vertical_alignment = 2
+
+[node name="y_axis" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0)
+mesh = SubResource("BoxMesh_35hxj")
+skeleton = NodePath("../..")
+
+[node name="z_label" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.022333, 0.0718163, -0.161494)
+text = "Z Axis"
+font_size = 16
+outline_size = 6
+horizontal_alignment = 0
+vertical_alignment = 2
+
+[node name="z_axis" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25)
+mesh = SubResource("BoxMesh_ccyay")
+skeleton = NodePath("../..")

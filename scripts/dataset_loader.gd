@@ -7,11 +7,20 @@ extends Node3D
 @export var axis2: WineProperty
 @export var axis3: WineProperty
 @export var axes_length: float
+@export var label_offset: float = 0.2
 @export_range(0.01, 2, 0.01) var sphere_scale: float
 
 @onready var sphere_scale_basis = Basis.from_scale(Vector3(sphere_scale, sphere_scale, sphere_scale))
 
+@onready var x_axis_label = $axis_indicator/x_label
+@onready var y_axis_label = $axis_indicator/y_label
+@onready var z_axis_label = $axis_indicator/z_label
+
 func _ready() -> void:
+    x_axis_label.text = prop_to_string(axis1)
+    y_axis_label.text = prop_to_string(axis2)
+    z_axis_label.text = prop_to_string(axis3)
+
     wine_spheres.instance_count = self.dataset.size()
 
     var min_max_values: Dictionary = {}
@@ -42,10 +51,27 @@ func _ready() -> void:
         var y = (self.dataset[i][axis_y] - min_max_values[axis_y].x) / (min_max_values[axis_y].y - min_max_values[axis_y].x) * axes_length
         var z = (self.dataset[i][axis_z] - min_max_values[axis_z].x) / (min_max_values[axis_z].y - min_max_values[axis_z].x) * axes_length
 
+        var transform = Transform3D(sphere_scale_basis, Vector3(x, y, -z))
         wine_spheres.set_instance_transform(
             i,
-            Transform3D(sphere_scale_basis, Vector3(x - axes_length/2, y, -z))
+            transform
         )
+
+        var label = Label3D.new()
+        label.text = "Vinho Classe %s\n%s: %s\n%s: %s\n%s: %s" % [
+            self.dataset[i]["Class"],
+            axis_x,
+            self.dataset[i][axis_x],
+            axis_y,
+            self.dataset[i][axis_y],
+            axis_z,
+            self.dataset[i][axis_z],
+        ]
+        label.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
+        label.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
+        label.transform = transform
+        label.transform.origin.y += label_offset
+        add_child(label)
 
 func load_dataset() -> Array[Dictionary]:
     var file = FileAccess.open("res://Assets/wine.csv", FileAccess.READ)
