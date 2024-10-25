@@ -1,16 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://dpd6s8seysh5d"]
+[gd_scene load_steps=12 format=3 uid="uid://dpd6s8seysh5d"]
 
 [ext_resource type="PackedScene" uid="uid://c8xwumx186b27" path="res://Assets/Hand_Left.scn" id="1_0ikst"]
 [ext_resource type="Texture2D" uid="uid://kqcfdo8ew23a" path="res://icon.svg" id="1_eu7mx"]
 [ext_resource type="Script" path="res://root.gd" id="1_vqcta"]
 [ext_resource type="PackedScene" uid="uid://1lq3jdmeyvgb" path="res://Assets/Hand_Right.scn" id="2_0jefg"]
 [ext_resource type="Script" path="res://scripts/debug_move_player.gd" id="2_xvtds"]
+[ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="4_pqsoj"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_r6r1x"]
 [ext_resource type="Texture2D" uid="uid://cnhdvjp2aa1ix" path="res://Assets/floor_1m x 1m.png" id="7_m3waa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_owven"]
 albedo_texture = ExtResource("7_m3waa")
 albedo_texture_force_srgb = true
+uv1_scale = Vector3(20, 20, 20)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0lh4l"]
 material = SubResource("StandardMaterial3D_owven")
@@ -23,7 +25,7 @@ size = Vector3(100, 1, 100)
 script = ExtResource("1_vqcta")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 script = ExtResource("2_xvtds")
 enabled = true
 speed = 14.0
@@ -36,6 +38,8 @@ tracker = &"left_hand"
 
 [node name="Hand_Left" parent="XROrigin3D/left_hand" instance=ExtResource("1_0ikst")]
 transform = Transform3D(-5.19923e-08, 1.18945, 5.19923e-08, -4.54531e-15, 5.19923e-08, -1.18945, -1.18945, -5.19923e-08, 2.27266e-15, -0.5, 0, -0.5)
+
+[node name="FunctionTeleport" parent="XROrigin3D/left_hand" instance=ExtResource("4_pqsoj")]
 
 [node name="right_hand" type="XRController3D" parent="XROrigin3D"]
 tracker = &"right_hand"
