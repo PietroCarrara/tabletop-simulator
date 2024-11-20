@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlx3f4as3qk6"]
+
+[ext_resource type="PackedScene" uid="uid://581jncm57kte" path="res://br.glb" id="1_cpm00"]
+
+[node name="br" instance=ExtResource("1_cpm00")]
+
+[node name="BR-RR" parent="." index="21"]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, -0.986646, 0, -0.788597)
